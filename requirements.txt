@@ -1,0 +1,7 @@
+google-cloud-bigquery
+google-oauth
+google-auth
+pandas
+pandas-gbq
+pyarrow
+dotenv
