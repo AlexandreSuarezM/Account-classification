@@ -1,0 +1,23 @@
+Tasks.
+
+- Repair de features on the inners
+- Keep documenting on the grafs. 
+      directed grafs / multyweight / taking diferent graf layer ? / 
+- Consider HDBSCAN / GMM / Graphs /  
+- SEM / SNORKEL / Think if spectral clustering makes sense / Dimensionality reduction / Layer /  
+- add the lsit of improvements.
+
+March 16 (today)
+Repair the inner features — this is blocking everything else since broken inners affect the feature table that all models consume. Fix from_addr_id_user / token_id_inner column references and validate the inner completeness check is actually catching orphaned roots correctly.
+March 17–18
+Graph documentation and design decisions. Write up the directed graph approach, explore whether multiweight edges make sense (separate edge weights for value, gas, frequency), and sketch out the idea of layered graphs — one layer per transaction type (pay, appl, axfer) rather than one flat graph.
+March 19–20
+HDBSCAN and GMM. Run both on your current df_users_b feature table and compare cluster assignments against your existing iso_bot / weighted_bot labels. HDBSCAN is the priority since it handles noise points natively which maps well to your uncertain accounts.
+March 21–22
+SEM and Snorkel. SEM gives you the latent factor structure (BOT_SIGNAL → RISK) which is already sketched in Account-classification.ipynb. Snorkel is worth exploring as a way to turn your weighted score rules into proper labelling functions with estimated accuracies — this would give the Decision Tree actual probabilistic labels instead of hard 0/1 from your threshold.
+March 23–24
+Spectral clustering and dimensionality reduction. Think through whether spectral clustering makes sense given your graph structure — it does if you believe bot clusters are defined by connectivity patterns rather than feature distances. Run UMAP or PCA first to visualise whether your accounts actually separate into distinct groups before committing to a clustering method.
+March 25–27
+Compile the improvements list. By this point you'll have run enough experiments to know what worked. Document what each model adds, where they disagree, which features matter most, and what the next iteration would change. This feeds directly into the final write-up.
+March 28
+Buffer and review. Catch anything that slipped, make sure the two notebooks are consistent with each other, and ensure outputs are saved and the repo is clean.
